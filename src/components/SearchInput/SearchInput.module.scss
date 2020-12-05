@@ -1,0 +1,52 @@
+@import "../../sass/base.scss";
+
+$input-width: 50rem;
+$iput-change-width: 20px;
+
+.search {
+  display: flex;
+  justify-content: center;
+
+  &__input {
+    display: block;
+    border: 1px solid $cadet-blue-crayola;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 0.5rem 1.5rem;
+    width: 80%;
+    max-width: $input-width;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      width: calc(#{$input-width} + #{$iput-change-width});
+      max-width: calc(#{$input-width} + #{$iput-change-width});
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      font-family: "Montserrat";
+    }
+  }
+
+  &__button {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    background-color: $light-gray;
+    border: 1px solid $cadet-blue-crayola;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    outline: none;
+    transition: all 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: darken($cadet-blue-crayola, 2%);
+    }
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+  }
+}

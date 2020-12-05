@@ -1,0 +1,36 @@
+//Variables
+$gb-font-size: 3.5rem;
+
+$cultured: #f8f9faff;
+$cultured-2: #e9ecefff;
+$gainsboro: #dee2e6ff;
+$light-gray: #ced4daff;
+$cadet-blue-crayola: #adb5bdff;
+$slate-gray: #6c757dff;
+$davys-grey: #495057ff;
+$gunmetal: #343a40ff;
+$charleston-green: #212529ff;
+
+//Overall settings
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: $gb-font-size;
+  padding: 2rem;
+}
