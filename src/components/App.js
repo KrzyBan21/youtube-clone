@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 import SearchInput from "./SearchInput/SearchInput";
+import FilmList from "./FilmList/FilmList";
 
-const App = () => {
+import { getFilms } from "../store/actions";
+import { connect } from "react-redux";
+
+const App = (props) => {
+  useEffect(() => {
+    props.getFilms();
+  });
+
   return (
     <div className="App">
-      <section className="header__section">
+      <header className="header__section">
         <SearchInput />
-      </section>
+      </header>
+      <main>
+        <FilmList className="main__section" />
+      </main>
     </div>
   );
 };
 
-export default App;
+export default connect(null, { getFilms })(App);
