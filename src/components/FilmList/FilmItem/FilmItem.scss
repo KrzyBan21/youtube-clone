@@ -1,0 +1,14 @@
+.film__item {
+  width: 30rem;
+  height: 20rem;
+
+  &--1 {
+    background-color: red;
+  }
+  &--2 {
+    background-color: green;
+  }
+  &--3 {
+    background-color: blue;
+  }
+}

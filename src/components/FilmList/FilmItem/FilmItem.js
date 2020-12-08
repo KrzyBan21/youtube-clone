@@ -1,8 +1,8 @@
 import React from "react";
 import "./FilmItem.scss";
 
-const FilmItem = () => {
-  return <div>Film Item</div>;
+const FilmItem = (props) => {
+  return <div className={`film__item film__item--${props.modify}`}>Film Item</div>;
 };
 
 export default FilmItem;
