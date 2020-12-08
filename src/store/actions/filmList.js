@@ -31,10 +31,8 @@ export const getFilms = () => {
         },
       });
       dispatch(getFilmsSuccess(response.data.items));
-      console.log(response);
     } catch (e) {
-      console.log(e);
-      dispatch(getFilmsFail(e));
+      dispatch(getFilmsFail(e.message));
     }
   };
 };

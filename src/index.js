@@ -8,10 +8,11 @@ import { Provider } from "react-redux";
 import rootReducer from "./store/reducers";
 import thunk from "redux-thunk";
 
-const composeEnhancers =
-  process.env.NODE_ENV === "development"
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : null || compose;
+import { BrowserRouter } from "react-router-dom";
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  : compose; //: null || compose;
 
 const store = createStore(
   rootReducer,
@@ -20,7 +21,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
 
   document.getElementById("root")
