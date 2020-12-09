@@ -2,7 +2,7 @@
 
 .App {
   background-color: $cultured;
-  height: 150rem;
+  height: auto;
 }
 
 .header__section {
@@ -12,4 +12,5 @@
 .main__section {
   padding-top: 6rem;
   display: grid;
+   padding-bottom: 10rem;;
 }

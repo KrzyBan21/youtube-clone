@@ -5,7 +5,7 @@ import FilmItem from "./FilmItem/FilmItem";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/";
 
-const FilmList = ({ onGetFilms, searchText }) => {
+const FilmList = ({ onGetFilms, searchText, filmList }) => {
   useEffect(() => {
     onGetFilms(searchText);
   }, [onGetFilms, searchText]);
@@ -34,10 +34,16 @@ const FilmList = ({ onGetFilms, searchText }) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    filmList: state.filmList.films,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     onGetFilms: (searchText) => dispatch(actions.getFilms(searchText)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(FilmList);
+export default connect(mapStateToProps, mapDispatchToProps)(FilmList);

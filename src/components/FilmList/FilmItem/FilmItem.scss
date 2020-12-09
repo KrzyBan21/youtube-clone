@@ -1,14 +1,33 @@
-.film__item {
-  width: 30rem;
-  height: 20rem;
+@import "../../../sass/base.scss";
 
-  &--1 {
-    background-color: red;
+.film {
+  &__item {
+    width: $grid-item-width;
+    transform: scale(1);
+    transition: transform 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+    }
   }
-  &--2 {
-    background-color: green;
+
+  &__img {
+    width: $grid-item-width;
+    height: $grid-item-height;
   }
-  &--3 {
-    background-color: blue;
+
+  &__title {
+    background-color: white;
+    border-radius: 4px;
+    padding: 1.5rem 3rem;
+    height: auto;
+  }
+
+  &__text {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }

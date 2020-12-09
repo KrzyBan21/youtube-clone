@@ -1,14 +1,15 @@
+@import "../../sass/base.scss";
+
 .film {
   display: grid;
-  // max-width: 170rem;
-  grid-template-rows: repeat(1, 20rem);
-  //   grid-template-columns: repeat(auto-fill, 20rem);
+  grid-template-rows: repeat(1, max-content);
+  grid-template-columns: repeat(auto-fit, minmax($grid-item-width, 1fr));
 
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-auto-rows: max-content;
+  grid-auto-columns: $grid-item-width;
 
-  grid-auto-rows: 20rem;
-  grid-auto-columns: 30rem;
-
-  grid-gap: 5rem;
+  grid-gap: $grid-gap;
   justify-items: center;
+
+  padding: 0 2rem;
 }
