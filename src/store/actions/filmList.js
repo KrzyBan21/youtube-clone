@@ -21,13 +21,13 @@ const getFilmsFail = (error) => {
   };
 };
 
-export const getFilms = () => {
+export const getFilms = (searchText) => {
   return async (dispatch) => {
     try {
       dispatch(getFilmsStart());
       const response = await youtube.get("/search", {
         params: {
-          q: "buildings",
+          q: searchText,
         },
       });
       dispatch(getFilmsSuccess(response.data.items));

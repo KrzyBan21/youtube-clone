@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import SearchInput from "./SearchInput/SearchInput";
 import FilmList from "./FilmList/FilmList";
@@ -6,27 +6,26 @@ import SelectedFilm from "./SelectedFilm/SelectedFilm";
 
 import { Route, Switch } from "react-router-dom";
 
-import { getFilms } from "../store/actions";
-import { connect } from "react-redux";
+const App = () => {
+  const [inputText, setInputText] = useState("");
 
-const App = (props) => {
-  useEffect(() => {
-    props.getFilms();
-  });
+  const onSetInputText = (text) => {
+    setInputText(text);
+  };
 
   return (
     <div className="App">
       <header className="header__section">
-        <SearchInput />
+        <SearchInput onSetInput={onSetInputText} />
       </header>
       <main className="main__section">
         <Switch>
-          <Route path="/selected-film/:id" component={SelectedFilm} />
-          <Route path="/" component={FilmList} />
+          <Route path="/selected-film/:id" render={() => <SelectedFilm />} />
+          <Route path="/" render={() => <FilmList searchText={inputText} />} />
         </Switch>
       </main>
     </div>
   );
 };
 
-export default connect(null, { getFilms })(App);
+export default App;
