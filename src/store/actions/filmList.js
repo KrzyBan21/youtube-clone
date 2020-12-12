@@ -25,6 +25,9 @@ export const getFilms = (searchText) => {
   return async (dispatch) => {
     try {
       dispatch(getFilmsStart());
+      // const response={};
+      // response.data={};
+      // response.data.items = [];
       const response = await youtube.get("/search", {
         params: {
           q: searchText,

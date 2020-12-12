@@ -8,30 +8,20 @@ import * as actions from "../../store/actions/";
 const FilmList = ({ onGetFilms, searchText, filmList }) => {
   useEffect(() => {
     onGetFilms(searchText);
+    // console.log(filmList);
   }, [onGetFilms, searchText]);
 
-  return (
-    <div className="film">
-      <FilmItem modify={1} />
-      <FilmItem modify={2} />
-      <FilmItem modify={3} />
-      <FilmItem modify={1} />
-      <FilmItem modify={2} />
-      <FilmItem modify={3} />
-      <FilmItem modify={1} />
-      <FilmItem modify={2} />
-      <FilmItem modify={3} />
-      <FilmItem modify={1} />
-      <FilmItem modify={2} />
-      <FilmItem modify={3} />
-      <FilmItem modify={1} />
-      <FilmItem modify={2} />
-      <FilmItem modify={3} />
-      <FilmItem modify={1} />
-      <FilmItem modify={2} />
-      <FilmItem modify={3} />
-    </div>
-  );
+  const filmListToShow = filmList.map((film) => {
+    return (
+      <FilmItem
+        key={film.id.videoId}
+        title={film.snippet.title}
+        url={film.snippet.thumbnails.medium.url}
+      />
+    );
+  });
+
+return <div className="film">{filmListToShow}</div>;
 };
 
 const mapStateToProps = (state) => {
