@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.scss";
 import SearchInput from "./SearchInput/SearchInput";
 import FilmList from "./FilmList/FilmList";
 import SelectedFilm from "./SelectedFilm/SelectedFilm";
 
+import { useParams, useHistory } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../store/actions";
 
-const App = () => {
-  const [inputText, setInputText] = useState("");
+const App = ({ onSetSearchedText }) => {
+  const params = useParams();
+  const history = useHistory();
 
   const onSetInputText = (text) => {
-    setInputText(text);
+    onSetSearchedText(text);
+    console.log(window.location.pathname);
+    if (window.location.pathname.startsWith('/selected-film')) {
+      history.push("/");
+    }
   };
 
   return (
@@ -20,12 +28,21 @@ const App = () => {
       </header>
       <main className="main__section">
         <Switch>
-          <Route path="/selected-film/:id" render={() => <SelectedFilm />} />
-          <Route path="/" render={() => <FilmList searchText={inputText} />} />
+          <Route
+            path="/selected-film/:videoId"
+            render={() => <SelectedFilm />}
+          />
+          <Route path="/" render={() => <FilmList />} />
         </Switch>
       </main>
     </div>
   );
 };
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSetSearchedText: (text) => dispatch(actions.setSearchedText(text)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(App);

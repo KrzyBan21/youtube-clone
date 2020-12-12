@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import classes from "./SearchInput.module.scss";
 import { BsSearch } from "react-icons/bs";
 
+
+
 const SearchInput = ({ onSetInput }) => {
   const [inputData, setInputData] = useState("");
+
 
   const onInputData = (e) => {
     setInputData(e.target.value);
@@ -12,6 +15,8 @@ const SearchInput = ({ onSetInput }) => {
   const onSubmitData = (e) => {
     e.preventDefault();
     onSetInput(inputData);
+
+
   };
 
   return (

@@ -25,9 +25,7 @@ export const getFilms = (searchText) => {
   return async (dispatch) => {
     try {
       dispatch(getFilmsStart());
-      // const response={};
-      // response.data={};
-      // response.data.items = [];
+
       const response = await youtube.get("/search", {
         params: {
           q: searchText,
@@ -37,5 +35,19 @@ export const getFilms = (searchText) => {
     } catch (e) {
       dispatch(getFilmsFail(e.message));
     }
+  };
+};
+
+export const selectFilm = (video) => {
+  return {
+    type: actionTypes.SELECT_FILM,
+    video,
+  };
+};
+
+export const setSearchedText = (text) => {
+  return {
+    type: actionTypes.SET_SEARCHED_TEXT,
+    text,
   };
 };

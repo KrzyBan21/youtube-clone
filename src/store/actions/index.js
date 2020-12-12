@@ -1,1 +1,1 @@
-export { getFilms } from "./filmList";
+export { getFilms, selectFilm, setSearchedText } from "./filmList";

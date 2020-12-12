@@ -4,6 +4,8 @@ const initialState = {
   isLoading: false,
   error: null,
   films: [],
+  video: null,
+  text: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +27,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.error,
+      };
+    case actionTypes.SELECT_FILM:
+      return {
+        ...state,
+        video: action.video,
+      };
+    case actionTypes.SET_SEARCHED_TEXT:
+      return {
+        ...state,
+        text: action.text,
       };
     default:
       return state;

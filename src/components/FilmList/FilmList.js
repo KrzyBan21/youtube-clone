@@ -5,11 +5,11 @@ import FilmItem from "./FilmItem/FilmItem";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/";
 
-const FilmList = ({ onGetFilms, searchText, filmList }) => {
+const FilmList = ({ onGetFilms, filmList, text }) => {
   useEffect(() => {
-    onGetFilms(searchText);
-    // console.log(filmList);
-  }, [onGetFilms, searchText]);
+    onGetFilms(text);
+    //  console.log(filmList);
+  }, [onGetFilms, text]);
 
   const filmListToShow = filmList.map((film) => {
     return (
@@ -17,16 +17,19 @@ const FilmList = ({ onGetFilms, searchText, filmList }) => {
         key={film.id.videoId}
         title={film.snippet.title}
         url={film.snippet.thumbnails.medium.url}
+        videoId={film.id.videoId}
+        video={film}
       />
     );
   });
 
-return <div className="film">{filmListToShow}</div>;
+  return <div className="film">{filmListToShow}</div>;
 };
 
 const mapStateToProps = (state) => {
   return {
     filmList: state.filmList.films,
+    text: state.filmList.text,
   };
 };
 

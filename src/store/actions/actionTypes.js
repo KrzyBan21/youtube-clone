@@ -1,3 +1,6 @@
 export const GET_FILMS_START = "GET_FILMS_START";
 export const GET_FILMS_SUCCESS = "GET_FILMS_SUCCESS";
 export const GET_FILMS_FAIL = "GET_FILMS_FAIL";
+
+export const SET_SEARCHED_TEXT = 'SET_SEARCHED_TEXT';
+export const SELECT_FILM = 'SELECT_FILM';
