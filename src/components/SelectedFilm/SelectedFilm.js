@@ -4,15 +4,35 @@ import "./SelectedFilm.scss";
 import { connect } from "react-redux";
 
 const SelectedFilm = ({ video }) => {
+  let videoId = "";
+  let title = "";
+  let description = "";
+
   if (!video) {
-    return <div>Loading...</div>;
+    if (sessionStorage.getItem("videoId")) {
+      videoId = sessionStorage.getItem("videoId");
+      title = sessionStorage.getItem("title");
+      description = sessionStorage.getItem("description");
+    }
+  } else {
+    videoId = video.id.videoId;
+    title = video.snippet.title;
+    description = video.snippet.description;
   }
 
-  const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
+  const videoSrc = `https://www.youtube.com/embed/${videoId}`;
 
   return (
-    <div>
-      <iframe allowFullScreen src={videoSrc} title={video.snippet.title} />
+    <div className="selected__film">
+      <div className="selected__film__iframe">
+        <div className="ui embed">
+          <iframe allowFullScreen src={videoSrc} title={title} />
+        </div>
+        <div className="selected__film__details">
+          <h2 className="selected__film__details__title">{title}</h2>
+          <p className="selected__film__details__text">{description}</p>
+        </div>
+      </div>
     </div>
   );
 };

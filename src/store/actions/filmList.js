@@ -39,6 +39,10 @@ export const getFilms = (searchText) => {
 };
 
 export const selectFilm = (video) => {
+  sessionStorage.setItem("videoId", video.id.videoId);
+  sessionStorage.setItem("title", video.snippet.title);
+  sessionStorage.setItem("description", video.snippet.description);
+
   return {
     type: actionTypes.SELECT_FILM,
     video,
