@@ -4,19 +4,18 @@ import SearchInput from "./SearchInput/SearchInput";
 import FilmList from "./FilmList/FilmList";
 import SelectedFilm from "./SelectedFilm/SelectedFilm";
 
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
 
 const App = ({ onSetSearchedText }) => {
-  const params = useParams();
   const history = useHistory();
 
   const onSetInputText = (text) => {
     onSetSearchedText(text);
     console.log(window.location.pathname);
-    if (window.location.pathname.startsWith('/selected-film')) {
+    if (window.location.pathname.startsWith("/selected-film")) {
       history.push("/");
     }
   };
