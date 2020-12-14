@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./SelectedFilm.scss";
-
-import { connect } from "react-redux";
-import * as actions from "../../store/actions/index";
 
 import Comments from "./Comments/Comments";
 
-const SelectedFilm = ({ video, onGetComments }) => {
+import { connect } from "react-redux";
+
+const SelectedFilm = ({ video }) => {
   let videoId = "";
   let title = "";
   let description = "";
@@ -23,10 +22,6 @@ const SelectedFilm = ({ video, onGetComments }) => {
     description = video.snippet.description;
   }
 
-  // useEffect(() => {
-  //   onGetComments(videoId);
-  // }, [videoId]);
-
   const videoSrc = `https://www.youtube.com/embed/${videoId}`;
 
   return (
@@ -39,7 +34,7 @@ const SelectedFilm = ({ video, onGetComments }) => {
           <h2 className="selected__film__details__title">{title}</h2>
           <p className="selected__film__details__text">{description}</p>
         </div>
-        <Comments />
+        <Comments videoId={videoId} />
       </div>
     </div>
   );
@@ -51,11 +46,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onGetComments: (videoId, pageToken) =>
-      dispatch(actions.getComments(videoId, pageToken)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SelectedFilm);
+export default connect(mapStateToProps)(SelectedFilm);

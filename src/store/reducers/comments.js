@@ -4,6 +4,7 @@ const initialState = {
   isLoading: false,
   error: null,
   comments: [],
+  nextPageToken: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,12 +14,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoading: true,
         error: null,
+        nextPageToken: "",
       };
     case actionTypes.GET_COMMENTS_SUCCESS:
       return {
         ...state,
         isLoading: false,
         comments: action.comments,
+        nextPageToken: action.nextPageToken,
       };
     case actionTypes.GET_COMMENTS_FAIL:
       return {

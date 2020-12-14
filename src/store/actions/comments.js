@@ -7,10 +7,11 @@ const getCommentsStart = () => {
   };
 };
 
-const getCommentsSuccess = (comments) => {
+const getCommentsSuccess = (comments, nextPageToken) => {
   return {
     type: actionTypes.GET_COMMENTS_SUCCESS,
     comments,
+    nextPageToken,
   };
 };
 
@@ -24,7 +25,7 @@ const getCommentsFail = (error) => {
 export const getComments = (videoId, pageToken = null) => {
   return async (dispatch) => {
     try {
-      dispatch(getCommentsStart);
+      dispatch(getCommentsStart());
 
       const comments = await youtube.get("/commentThreads", {
         params: {
@@ -33,9 +34,13 @@ export const getComments = (videoId, pageToken = null) => {
         },
       });
 
+      dispatch(
+        getCommentsSuccess(comments.data.items, comments.data.nextPageToken)
+      );
       console.log(comments);
     } catch (e) {
-      console.log(e.message);
+      dispatch(getCommentsFail(e.message));
+      // console.log(e.message);
     }
   };
 };
