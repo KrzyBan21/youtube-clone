@@ -13,12 +13,15 @@ const Comments = ({
   comments,
   nextPageToken,
   isLoading,
+  isLoadingMore,
 }) => {
   useEffect(() => {
     onGetComments(videoId);
   }, [onGetComments, videoId]);
 
-  const commentsToShow = comments.map((comment) => {
+  let commentsToShow = [];
+  //  if (!isLoading) {
+  commentsToShow = comments.map((comment) => {
     const {
       authorDisplayName,
       authorProfileImageUrl,
@@ -36,12 +39,23 @@ const Comments = ({
       />
     );
   });
+  // }
+
+  const onLoadMoreComments = () => {
+    onGetComments(videoId, nextPageToken);
+  };
 
   return (
     <div className="comments">
       {isLoading ? "...Loading" : commentsToShow}
       <div className="comments__btn">
-        <ShowMoreBtn>Show more comments</ShowMoreBtn>
+        {isLoadingMore ? (
+          "...Loading"
+        ) : (
+          <ShowMoreBtn onClick={onLoadMoreComments}>
+            Show more comments
+          </ShowMoreBtn>
+        )}
       </div>
     </div>
   );
@@ -52,6 +66,7 @@ const mapStateToProps = (state) => {
     comments: state.comments.comments,
     nextPageToken: state.comments.nextPageToken,
     isLoading: state.comments.isLoading,
+    isLoadingMore: state.comments.isLoadingMore,
   };
 };
 

@@ -15,12 +15,14 @@
   &__image {
     width: 4rem;
     height: 4rem;
-    margin-right: 2rem;
+    margin-right: 1rem;
+    align-self: flex-start;
 
     &__img {
       width: 4rem;
       height: 4rem;
       border-radius: 50%;
+      font-size: 1.2rem;
     }
   }
 

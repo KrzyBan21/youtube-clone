@@ -13,7 +13,7 @@ const Comment = ({ author, authorImg, textDisplay, publishedAt }) => {
   return (
     <div className="comments__item">
       <div className="comments__image">
-        <img className="comments__image__img" src={authorImg} alt="test" />
+        <img className="comments__image__img" src={authorImg} alt={author} />
       </div>
       <div className="comments__details">
         <h3 className="comments__details__author">{author}</h3>

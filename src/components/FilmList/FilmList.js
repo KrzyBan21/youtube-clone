@@ -8,7 +8,7 @@ import * as actions from "../../store/actions/";
 const FilmList = ({ onGetFilms, filmList, text }) => {
   useEffect(() => {
     onGetFilms(text);
-    // console.log(filmList);
+    console.log(filmList);
   }, [onGetFilms, text]);
 
   const filmListToShow = filmList.map((film) => {

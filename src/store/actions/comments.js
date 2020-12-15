@@ -1,17 +1,19 @@
 import * as actionTypes from "./actionTypes";
 import youtube from "../../apis/youtubeApi";
 
-const getCommentsStart = () => {
+const getCommentsStart = (isMoreComments) => {
   return {
     type: actionTypes.GET_COMMENTS_START,
+    isMoreComments,
   };
 };
 
-const getCommentsSuccess = (comments, nextPageToken) => {
+const getCommentsSuccess = (comments, nextPageToken, isMoreComments) => {
   return {
     type: actionTypes.GET_COMMENTS_SUCCESS,
     comments,
     nextPageToken,
+    isMoreComments,
   };
 };
 
@@ -25,7 +27,14 @@ const getCommentsFail = (error) => {
 export const getComments = (videoId, pageToken = null) => {
   return async (dispatch) => {
     try {
-      dispatch(getCommentsStart());
+      let isMoreComments;
+      if (pageToken) {
+        isMoreComments = true;
+      }else{
+        isMoreComments = false;
+      }
+
+      dispatch(getCommentsStart(isMoreComments));
 
       const comments = await youtube.get("/commentThreads", {
         params: {
@@ -35,7 +44,11 @@ export const getComments = (videoId, pageToken = null) => {
       });
 
       dispatch(
-        getCommentsSuccess(comments.data.items, comments.data.nextPageToken)
+        getCommentsSuccess(
+          comments.data.items,
+          comments.data.nextPageToken,
+          isMoreComments
+        )
       );
       console.log(comments);
     } catch (e) {
