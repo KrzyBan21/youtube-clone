@@ -1,16 +1,19 @@
 import * as actionTypes from "./actionTypes";
 import youtube from "../../apis/youtubeApi";
 
-const getFilmsStart = () => {
+const getFilmsStart = (isMoreFilms) => {
   return {
     type: actionTypes.GET_FILMS_START,
+    isMoreFilms,
   };
 };
 
-const getFilmsSuccess = (films) => {
+const getFilmsSuccess = (films, pageToken, isMoreFilms) => {
   return {
     type: actionTypes.GET_FILMS_SUCCESS,
     films,
+    pageToken,
+    isMoreFilms,
   };
 };
 
@@ -21,17 +24,32 @@ const getFilmsFail = (error) => {
   };
 };
 
-export const getFilms = (searchText) => {
+export const getFilms = (searchText, pageToken = null) => {
   return async (dispatch) => {
     try {
-      dispatch(getFilmsStart());
+      let isMoreFilms;
+      if (pageToken) {
+        isMoreFilms = true;
+      } else {
+        isMoreFilms = false;
+      }
+
+      dispatch(getFilmsStart(isMoreFilms));
 
       const response = await youtube.get("/search", {
         params: {
           q: searchText,
+          pageToken,
         },
       });
-      dispatch(getFilmsSuccess(response.data.items));
+      console.log(response);
+      dispatch(
+        getFilmsSuccess(
+          response.data.items,
+          response.data.nextPageToken,
+          isMoreFilms
+        )
+      );
     } catch (e) {
       dispatch(getFilmsFail(e.message));
     }

@@ -2,26 +2,49 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   isLoading: false,
+  isLoadingMore: false,
   error: null,
   films: [],
   video: null,
   text: "",
+  nextPageToken: "",
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_FILMS_START:
-      return {
-        ...state,
-        isLoading: true,
-        error: null,
-      };
+      if (action.isMoreFilms) {
+        return {
+          ...state,
+          isLoadingMore: true,
+          error: null,
+        };
+      } else {
+        return {
+          ...state,
+          isLoading: true,
+          error: null,
+          nextPageToken: action.pageToken,
+        };
+      }
+
     case actionTypes.GET_FILMS_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        films: action.films,
-      };
+      if (action.isMoreFilms) {
+        return {
+          ...state,
+          isLoadingMore: false,
+          films: [...state.films, ...action.films],
+          nextPageToken: action.pageToken,
+        };
+      } else {
+        return {
+          ...state,
+          isLoading: false,
+          films: action.films,
+          nextPageToken: action.pageToken,
+        };
+      }
+
     case actionTypes.GET_FILMS_FAIL:
       return {
         ...state,
