@@ -5,8 +5,6 @@ import FilmItem from "./FilmItem/FilmItem";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/";
 
-import ShowMoreBtn from "../UI/ShowMoreBtn/ShowMoreBtn";
-
 const FilmList = ({
   onGetFilms,
   filmList,
@@ -14,37 +12,35 @@ const FilmList = ({
   nextPageToken,
   isLoadingMore,
 }) => {
-  // useEffect(() => {
-  //   window.onscroll = function () {
-  //     // @var int totalPageHeight
-  //     let totalPageHeight = document.body.scrollHeight;
-  //     console.log(totalPageHeight);
+  useEffect(() => {
+    window.onscroll = function () {
+      //  int totalPageHeight
+      let totalPageHeight = document.body.scrollHeight;
+      console.log(totalPageHeight);
 
-  //     // @var int scrollPoint
-  //     let scrollPoint = window.scrollY + window.innerHeight;
-  //     console.log(scrollPoint);
-  //     // check if we hit the bottom of the page
-  //     if (Math.round(scrollPoint) >= Math.round(totalPageHeight, 0)) {
-  //       alert("gowno");
-  //       //onGetFilms(text, nextPageToken);
-  //     }
-  //   };
-  // }, [onGetFilms, text, nextPageToken]);
+      //  int scrollPoint
+      let scrollPoint = window.scrollY + window.innerHeight;
+      console.log(scrollPoint);
+      // check if we hit the bottom of the page
+      if (Math.ceil(scrollPoint) >= totalPageHeight) {
+        onGetFilms(text, nextPageToken);
+      }
+    };
+
+    window.onload = function () {};
+    let scrollHeight = document.querySelector("body").scrollHeight;
+
+    let clientHeight = document.querySelector("body").clientHeight;
+
+    if (clientHeight >= scrollHeight && nextPageToken) {
+      onGetFilms(text, nextPageToken);
+    }
+  }, [onGetFilms, text, nextPageToken]);
 
   useEffect(() => {
     onGetFilms(text);
     // console.log(filmList);
   }, [onGetFilms, text]);
-
-  // useEffect(() => {
-  //   let scrollHeight = document.querySelector("body").scrollHeight;
-
-  //   let clientHeight = document.querySelector("body").clientHeight;
-
-  //   if ((clientHeight > scrollHeight) && nextPageToken) {
-  //     onGetFilms(text, nextPageToken);
-  //   }
-  // }, [onGetFilms, text, nextPageToken]);
 
   const filmListToShow = filmList.map((film) => {
     return (
@@ -58,15 +54,15 @@ const FilmList = ({
     );
   });
 
-  const onLoadMoreFilms = () => {
-    onGetFilms(text, nextPageToken);
-  };
+  // const onLoadMoreFilms = () => {
+  //   onGetFilms(text, nextPageToken);
+  // };
 
   return (
     <React.Fragment>
       <div className="film">{filmListToShow}</div>
       <div>
-        <ShowMoreBtn onClick={onLoadMoreFilms}>Load more films</ShowMoreBtn>
+        {/* <ShowMoreBtn onClick={onLoadMoreFilms}>Load more films</ShowMoreBtn> */}
       </div>
     </React.Fragment>
   );
