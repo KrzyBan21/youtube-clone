@@ -18,4 +18,10 @@
   &--side__bar {
     grid-template-columns: 1fr;
   }
+
+  &__spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

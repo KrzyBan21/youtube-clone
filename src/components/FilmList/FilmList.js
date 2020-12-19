@@ -5,11 +5,14 @@ import FilmItem from "./FilmItem/FilmItem";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/";
 
+import Spinner from "../UI/Spinner/Spinner";
+
 const FilmList = ({
   onGetFilms,
   filmList,
   text,
   nextPageToken,
+  isLoading,
   isLoadingMore,
   isSideBar,
 }) => {
@@ -62,12 +65,19 @@ const FilmList = ({
 
   return (
     <React.Fragment>
-      <div className={`film ${isSideBar ? "film--side__bar" : ""}`}>
-        {filmListToShow}
-      </div>
-      <div>
-        {/* <ShowMoreBtn onClick={onLoadMoreFilms}>Load more films</ShowMoreBtn> */}
-      </div>
+      {isLoading ? (
+        <div className="film__spinner">
+          <Spinner />
+        </div>
+      ) : (
+        <div className={`film ${isSideBar ? "film--side__bar" : ""}`}>
+          {filmListToShow}
+        </div>
+      )}
+
+      {/* <div>
+        {/* <ShowMoreBtn onClick={onLoadMoreFilms}>Load more films</ShowMoreBtn> 
+      </div> */}
     </React.Fragment>
   );
 };
@@ -77,6 +87,7 @@ const mapStateToProps = (state) => {
     filmList: state.filmList.films,
     text: state.filmList.text,
     nextPageToken: state.filmList.nextPageToken,
+    isLoading: state.filmList.isLoading,
     isLoadingMore: state.filmList.isLoadingMore,
   };
 };
