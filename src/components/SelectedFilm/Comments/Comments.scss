@@ -4,7 +4,7 @@
 
   display: flex;
   flex-direction: column;
-
+  grid-area: comments;
   &__btn {
     align-self: center;
   }

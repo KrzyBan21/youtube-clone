@@ -2,6 +2,7 @@ import React from "react";
 import "./SelectedFilm.scss";
 
 import Comments from "./Comments/Comments";
+import FilmListSideBar from "./FilmListSideBar/FilmListSideBar";
 
 import { connect } from "react-redux";
 
@@ -34,8 +35,9 @@ const SelectedFilm = ({ video }) => {
           <h2 className="selected__film__details__title">{title}</h2>
           <p className="selected__film__details__text">{description}</p>
         </div>
-        <Comments videoId={videoId} />
       </div>
+        <Comments videoId={videoId} />
+      <FilmListSideBar />
     </div>
   );
 };
