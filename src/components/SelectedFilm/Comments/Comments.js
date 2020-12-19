@@ -3,6 +3,7 @@ import "./Comments.scss";
 
 import Comment from "./Comment/Comment";
 import ShowMoreBtn from "../../UI/ShowMoreBtn/ShowMoreBtn";
+import Spinner from "../../UI/Spinner/Spinner";
 
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/";
@@ -47,10 +48,10 @@ const Comments = ({
 
   return (
     <div className="comments">
-      {isLoading ? "...Loading" : commentsToShow}
+      {isLoading ? <Spinner /> : commentsToShow}
       <div className="comments__btn">
         {isLoadingMore ? (
-          "...Loading"
+          <Spinner />
         ) : (
           <ShowMoreBtn onClick={onLoadMoreComments}>
             Show more comments

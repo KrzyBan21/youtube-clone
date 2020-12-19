@@ -59,10 +59,6 @@ const FilmList = ({
     );
   });
 
-  // const onLoadMoreFilms = () => {
-  //   onGetFilms(text, nextPageToken);
-  // };
-
   return (
     <React.Fragment>
       {isLoading ? (
@@ -74,10 +70,11 @@ const FilmList = ({
           {filmListToShow}
         </div>
       )}
-
-      {/* <div>
-        {/* <ShowMoreBtn onClick={onLoadMoreFilms}>Load more films</ShowMoreBtn> 
-      </div> */}
+      {isLoadingMore ? (
+        <div className="film__spinner">
+          <Spinner />
+        </div>
+      ) : null}
     </React.Fragment>
   );
 };
