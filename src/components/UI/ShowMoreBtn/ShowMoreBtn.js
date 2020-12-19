@@ -3,7 +3,7 @@ import "./ShowMoreBtn.scss";
 
 const ShowMoreBtn = ({ children, onClick }) => {
   return (
-    <button onClick={onClick} className="show__btn">
+    <button onClick={onClick} className="show-btn">
       {children}
     </button>
   );

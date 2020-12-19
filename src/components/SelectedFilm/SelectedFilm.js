@@ -26,14 +26,14 @@ const SelectedFilm = ({ video }) => {
   const videoSrc = `https://www.youtube.com/embed/${videoId}`;
 
   return (
-    <div className="selected__film">
-      <div className="selected__film__iframe">
+    <div className="selected-film">
+      <div className="selected-film__iframe">
         <div className="ui embed">
           <iframe allowFullScreen src={videoSrc} title={title} />
         </div>
-        <div className="selected__film__details">
-          <h2 className="selected__film__details__title">{title}</h2>
-          <p className="selected__film__details__text">{description}</p>
+        <div className="selected-film__details">
+          <h2 className="selected-film__details__title">{title}</h2>
+          <p className="selected-film__details__text">{description}</p>
         </div>
       </div>
         <Comments videoId={videoId} />

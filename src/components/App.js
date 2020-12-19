@@ -22,10 +22,10 @@ const App = ({ onSetSearchedText }) => {
 
   return (
     <div className="App">
-      <header className="header__section">
+      <header className="header-section">
         <SearchInput onSetInput={onSetInputText} />
       </header>
-      <main className="main__section">
+      <main className="main-section">
         <Switch>
           <Route
             path="/selected-film/:videoId"
