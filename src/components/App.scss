@@ -11,8 +11,12 @@
 
 .main__section {
   padding-top: 6rem;
-  // display: grid;
   padding-bottom: 10rem;
   padding-left: 2rem;
   padding-right: 2rem;
+
+  @media (max-width: 35em) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

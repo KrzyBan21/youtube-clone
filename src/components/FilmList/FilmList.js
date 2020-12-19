@@ -11,6 +11,7 @@ const FilmList = ({
   text,
   nextPageToken,
   isLoadingMore,
+  isSideBar,
 }) => {
   useEffect(() => {
     window.onscroll = function () {
@@ -50,6 +51,7 @@ const FilmList = ({
         url={film.snippet.thumbnails.medium.url}
         videoId={film.id.videoId}
         video={film}
+        isSideBar={isSideBar}
       />
     );
   });
@@ -60,7 +62,9 @@ const FilmList = ({
 
   return (
     <React.Fragment>
-      <div className="film">{filmListToShow}</div>
+      <div className={`film ${isSideBar ? "film--side__bar" : ""}`}>
+        {filmListToShow}
+      </div>
       <div>
         {/* <ShowMoreBtn onClick={onLoadMoreFilms}>Load more films</ShowMoreBtn> */}
       </div>

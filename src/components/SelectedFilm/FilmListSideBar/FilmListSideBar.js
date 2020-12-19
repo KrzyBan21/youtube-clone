@@ -8,7 +8,7 @@ const FilmListSideBar = () => {
   return (
     <div className="film-list-side-bar">
       <div className="film-list-side-bar__list">
-        <FilmList />
+        <FilmList isSideBar={true} />
       </div>
     </div>
   );

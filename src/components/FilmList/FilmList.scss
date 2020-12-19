@@ -10,4 +10,12 @@
 
   grid-gap: $grid-gap;
   justify-items: center;
+
+  @media (max-width: 35em) {
+    grid-template-columns: 1fr;
+  }
+
+  &--side__bar {
+    grid-template-columns: 1fr;
+  }
 }
