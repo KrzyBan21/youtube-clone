@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SelectedFilm.scss";
 
 import Comments from "./Comments/Comments";
 import FilmListSideBar from "./FilmListSideBar/FilmListSideBar";
+import MobileComments from "./MobileComments/MobileComments";
 
 import { connect } from "react-redux";
 
@@ -10,6 +11,8 @@ const SelectedFilm = ({ video }) => {
   let videoId = "";
   let title = "";
   let description = "";
+
+  const [toogleCommentsOrFilms, setToogleCommentsOrFilms] = useState(true);
 
   if (!video) {
     if (sessionStorage.getItem("videoId")) {
@@ -25,6 +28,10 @@ const SelectedFilm = ({ video }) => {
 
   const videoSrc = `https://www.youtube.com/embed/${videoId}`;
 
+  const onToggleCommentsOrFilms = () => {
+    setToogleCommentsOrFilms(!toogleCommentsOrFilms);
+  };
+
   return (
     <div className="selected-film">
       <div className="selected-film__iframe">
@@ -36,8 +43,9 @@ const SelectedFilm = ({ video }) => {
           <p className="selected-film__details__text">{description}</p>
         </div>
       </div>
-        <Comments videoId={videoId} />
-      <FilmListSideBar />
+      <MobileComments onToggle={onToggleCommentsOrFilms} />
+      <Comments videoId={videoId} toogleComments={toogleCommentsOrFilms}/>
+      <FilmListSideBar toogleFilms={toogleCommentsOrFilms}/>
     </div>
   );
 };

@@ -22,7 +22,7 @@ const FilmItem = ({ url, title, videoId, video, onSelectVideo, isSideBar }) => {
     >
       <img
         src={url}
-        alt="test"
+        alt="video"
         className={`film__img ${isSideBar ? "film__img--side__bar" : ""}`}
       />
       <div

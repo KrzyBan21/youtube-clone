@@ -42,7 +42,7 @@ export const getFilms = (searchText, pageToken = null) => {
           pageToken,
         },
       });
-      console.log(response);
+      // console.log(response);
       dispatch(
         getFilmsSuccess(
           response.data.items,

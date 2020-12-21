@@ -20,11 +20,11 @@ const FilmList = ({
     window.onscroll = function () {
       //  int totalPageHeight
       let totalPageHeight = document.body.scrollHeight;
-      console.log(totalPageHeight);
+      // console.log(totalPageHeight);
 
       //  int scrollPoint
       let scrollPoint = window.scrollY + window.innerHeight;
-      console.log(scrollPoint);
+      // console.log(scrollPoint);
       // check if we hit the bottom of the page
       if (Math.ceil(scrollPoint) >= totalPageHeight) {
         onGetFilms(text, nextPageToken);
@@ -46,10 +46,10 @@ const FilmList = ({
     // console.log(filmList);
   }, [onGetFilms, text]);
 
-  const filmListToShow = filmList.map((film) => {
+  const filmListToShow = filmList.map((film, index) => {
     return (
       <FilmItem
-        key={film.id.videoId}
+        key={film.id.videoId + '_' + index}
         title={film.snippet.title}
         url={film.snippet.thumbnails.medium.url}
         videoId={film.id.videoId}

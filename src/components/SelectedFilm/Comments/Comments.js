@@ -15,6 +15,7 @@ const Comments = ({
   nextPageToken,
   isLoading,
   isLoadingMore,
+  toogleComments,
 }) => {
   useEffect(() => {
     onGetComments(videoId);
@@ -47,7 +48,11 @@ const Comments = ({
   };
 
   return (
-    <div className="comments">
+    <div
+      className={`comments ${
+        toogleComments ? null : "comments--mobile-switch"
+      }`}
+    >
       {isLoading ? <Spinner /> : commentsToShow}
       <div className="comments__btn">
         {isLoadingMore ? (

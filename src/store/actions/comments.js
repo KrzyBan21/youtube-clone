@@ -30,7 +30,7 @@ export const getComments = (videoId, pageToken = null) => {
       let isMoreComments;
       if (pageToken) {
         isMoreComments = true;
-      }else{
+      } else {
         isMoreComments = false;
       }
 
@@ -50,7 +50,7 @@ export const getComments = (videoId, pageToken = null) => {
           isMoreComments
         )
       );
-      console.log(comments);
+      // console.log(comments);
     } catch (e) {
       dispatch(getCommentsFail(e.message));
       // console.log(e.message);

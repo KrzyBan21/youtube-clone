@@ -1,3 +1,15 @@
 .film-list-side-bar {
   grid-area: side;
+
+  @media (max-width: 50em) {
+    position: absolute;
+    z-index: 101;
+    width: 100%;
+    transition: all 0.5s;
+  }
+
+  &--mobile-switch {
+    left: calc(-100% - 2rem);
+    display: none;
+  }
 }
