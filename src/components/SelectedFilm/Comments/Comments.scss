@@ -7,17 +7,17 @@
     z-index: 100;
     width: 100%;
     top: 5rem;
-    transition: all 0.5s;
+
+
+    &--mobile-switch {
+      transform: translateX(calc(-100% - 2rem));
+      display: none;
+    }
   }
 
   display: flex;
   flex-direction: column;
   grid-area: comments;
-
-  &--mobile-switch {
-    left: calc(-100% - 2rem);
-    display: none;
-  }
 
   &__btn {
     align-self: center;

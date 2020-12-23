@@ -12,7 +12,7 @@ const SelectedFilm = ({ video }) => {
   let title = "";
   let description = "";
 
-  const [toogleCommentsOrFilms, setToogleCommentsOrFilms] = useState(true);
+  const [toogleCommentsOrFilms, setToogleCommentsOrFilms] = useState(false);
 
   if (!video) {
     if (sessionStorage.getItem("videoId")) {
@@ -43,9 +43,12 @@ const SelectedFilm = ({ video }) => {
           <p className="selected-film__details__text">{description}</p>
         </div>
       </div>
-      <MobileComments onToggle={onToggleCommentsOrFilms} />
-      <Comments videoId={videoId} toogleComments={toogleCommentsOrFilms}/>
-      <FilmListSideBar toogleFilms={toogleCommentsOrFilms}/>
+      <MobileComments
+        onToggle={onToggleCommentsOrFilms}
+        toogleCommentsOrFilms={toogleCommentsOrFilms}
+      />
+      <Comments videoId={videoId} toogleComments={toogleCommentsOrFilms} />
+      <FilmListSideBar toogleFilms={toogleCommentsOrFilms} />
     </div>
   );
 };
