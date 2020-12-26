@@ -15,6 +15,7 @@ const FilmList = ({
   isLoading,
   isLoadingMore,
   isSideBar,
+  toogleFilms,
 }) => {
   useEffect(() => {
     window.onscroll = function () {
@@ -26,12 +27,12 @@ const FilmList = ({
       let scrollPoint = window.scrollY + window.innerHeight;
       // console.log(scrollPoint);
       // check if we hit the bottom of the page
-      if (Math.ceil(scrollPoint) >= totalPageHeight) {
+      if (Math.ceil(scrollPoint) >= totalPageHeight && !toogleFilms) {
         onGetFilms(text, nextPageToken);
+        // console.log("scroll");
       }
     };
 
-    window.onload = function () {};
     let scrollHeight = document.querySelector("body").scrollHeight;
 
     let clientHeight = document.querySelector("body").clientHeight;
@@ -39,17 +40,16 @@ const FilmList = ({
     if (clientHeight >= scrollHeight && nextPageToken) {
       onGetFilms(text, nextPageToken);
     }
-  }, [onGetFilms, text, nextPageToken]);
+  }, [onGetFilms, text, nextPageToken, toogleFilms]);
 
   useEffect(() => {
     onGetFilms(text);
-    // console.log(filmList);
   }, [onGetFilms, text]);
 
   const filmListToShow = filmList.map((film, index) => {
     return (
       <FilmItem
-        key={film.id.videoId + '_' + index}
+        key={film.id.videoId + "_" + index}
         title={film.snippet.title}
         url={film.snippet.thumbnails.medium.url}
         videoId={film.id.videoId}

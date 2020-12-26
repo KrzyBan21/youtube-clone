@@ -50,7 +50,7 @@ const Comments = ({
   return (
     <div
       className={`comments ${
-        toogleComments ? null : "comments--mobile-switch"
+        toogleComments ? '' : "comments--mobile-switch"
       }`}
     >
       {isLoading ? <Spinner /> : commentsToShow}
