@@ -1,4 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
+import { updateObject, updateArray } from "../utils";
 
 const initialState = {
   isLoading: false,
@@ -8,48 +9,52 @@ const initialState = {
   nextPageToken: "",
 };
 
+const getCommentsStart = (state, action) => {
+  if (action.isMoreComments) {
+    const updateComments = { isLoadingMore: true, error: null };
+    return updateObject(state, updateComments);
+  } else {
+    const updateComments = { isLoading: true, error: null, nextPageToken: "" };
+    return updateObject(state, updateComments);
+  }
+};
+
+const getCommentsSuccess = (state, action) => {
+  if (action.isMoreComments) {
+    const updateCommentsArray = updateArray(state.comments, action.comments);
+    const objectToUpdate = {
+      isLoadingMore: false,
+      comments: updateCommentsArray,
+      nextPageToken: action.nextPageToken,
+    };
+    return updateObject(state, objectToUpdate);
+  } else {
+    const objectToUpdate = {
+      isLoading: false,
+      comments: action.comments,
+      nextPageToken: action.nextPageToken,
+    };
+    return updateObject(objectToUpdate);
+  }
+};
+
+const getCommentsFail = (state, action) => {
+  const objectToUpdate = {
+    isLoading: false,
+    isLoadingMore: false,
+    error: action.error,
+  };
+  return updateObject(state, objectToUpdate);
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_COMMENTS_START:
-      if (action.isMoreComments) {
-        return {
-          ...state,
-          isLoadingMore: true,
-          error: null,
-        };
-      } else {
-        return {
-          ...state,
-          isLoading: true,
-          error: null,
-          nextPageToken: "",
-        };
-      }
-
+      return getCommentsStart(state, action);
     case actionTypes.GET_COMMENTS_SUCCESS:
-      if (action.isMoreComments) {
-        return {
-          ...state,
-          isLoadingMore: false,
-          comments: [...state.comments, ...action.comments],
-          nextPageToken: action.nextPageToken,
-        };
-      } else {
-        return {
-          ...state,
-          isLoading: false,
-          comments: action.comments,
-          nextPageToken: action.nextPageToken,
-        };
-      }
-
+      return getCommentsSuccess(state, action);
     case actionTypes.GET_COMMENTS_FAIL:
-      return {
-        ...state,
-        isLoading: false,
-        isLoadingMore: false,
-        error: action.error,
-      };
+      return getCommentsFail(state, action);
     default:
       return {
         ...state,
