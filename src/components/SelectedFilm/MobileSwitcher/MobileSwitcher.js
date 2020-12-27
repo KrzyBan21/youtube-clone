@@ -1,9 +1,9 @@
 import React from "react";
-import "./MobileComments.scss";
+import "./MobileSwitcher.scss";
 import { ImFilm } from "react-icons/im";
 import { BiCommentDetail } from "react-icons/bi";
 
-const MobileComments = ({ onToggle, toogleCommentsOrFilms }) => {
+const MobileSwitcher = ({ onToggle, toogleCommentsOrFilms }) => {
   return (
     <div onClick={onToggle} className="mobile">
       <ImFilm
@@ -20,4 +20,4 @@ const MobileComments = ({ onToggle, toogleCommentsOrFilms }) => {
   );
 };
 
-export default MobileComments;
+export default MobileSwitcher;

@@ -13,13 +13,13 @@
   z-index: 1000;
   top: 0;
   left: 0;
-  background-color: rgba(255,255,255,0.75);
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
 .main-section {
   padding: 10rem 2rem;
 
-  @media (max-width: 35em) {
+  @media (max-width: $mobile) {
     padding-left: 0;
     padding-right: 0;
     overflow: hidden;

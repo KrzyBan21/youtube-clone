@@ -1,13 +1,13 @@
+@import "../../../sass/base.scss";
+
 .comments {
   background-color: white;
   padding: 1rem 3rem;
 
-  @media (max-width: 68.75em) {
-    // position: absolute;
+  @media (max-width: $mobile-film-and-comments) {
     z-index: 100;
     width: 100%;
     top: 5rem;
-
 
     &--mobile-switch {
       transform: translateX(calc(-100% - 2rem));

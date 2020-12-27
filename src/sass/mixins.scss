@@ -1,0 +1,12 @@
+@mixin size {
+  width: 100%;
+  height: auto;
+}
+
+@mixin size-and-hover {
+  @include size;
+  
+  &:hover {
+    transform: none;
+  }
+}

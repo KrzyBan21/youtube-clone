@@ -3,7 +3,7 @@ import "./SelectedFilm.scss";
 
 import Comments from "./Comments/Comments";
 import FilmListSideBar from "./FilmListSideBar/FilmListSideBar";
-import MobileComments from "./MobileComments/MobileComments";
+import MobileSwitcher from "./MobileSwitcher/MobileSwitcher";
 
 import { connect } from "react-redux";
 
@@ -54,7 +54,7 @@ const SelectedFilm = ({ video }) => {
           <p className="selected-film__details__text">{description}</p>
         </div>
       </div>
-      <MobileComments
+      <MobileSwitcher
         onToggle={onToggleCommentsOrFilms}
         toogleCommentsOrFilms={toogleCommentsOrFilms}
       />
