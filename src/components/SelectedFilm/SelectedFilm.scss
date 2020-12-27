@@ -9,7 +9,7 @@
   grid-column-gap: 2rem;
   position: relative;
 
-  @media (max-width: 50em) {
+  @media (max-width: 68.75em) {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas:

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./SelectedFilm.scss";
 
 import Comments from "./Comments/Comments";
@@ -13,6 +13,7 @@ const SelectedFilm = ({ video }) => {
   let description = "";
 
   const [toogleCommentsOrFilms, setToogleCommentsOrFilms] = useState(false);
+  const titleRef = useRef(null);
 
   if (!video) {
     if (sessionStorage.getItem("videoId")) {
@@ -32,6 +33,14 @@ const SelectedFilm = ({ video }) => {
     setToogleCommentsOrFilms(!toogleCommentsOrFilms);
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [video]);
+
+  useEffect(() => {
+    titleRef.current.innerHTML = title;
+  }, [titleRef, title]);
+
   return (
     <div className="selected-film">
       <div className="selected-film__iframe">
@@ -39,7 +48,9 @@ const SelectedFilm = ({ video }) => {
           <iframe allowFullScreen src={videoSrc} title={title} />
         </div>
         <div className="selected-film__details">
-          <h2 className="selected-film__details__title">{title}</h2>
+          <h2 ref={titleRef} className="selected-film__details__title">
+            {title}
+          </h2>
           <p className="selected-film__details__text">{description}</p>
         </div>
       </div>

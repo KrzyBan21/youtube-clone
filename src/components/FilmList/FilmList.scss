@@ -17,9 +17,10 @@
 
   &--side__bar {
     grid-template-columns: 1fr;
+
   }
 
-  &__spinner{
+  &__spinner {
     display: flex;
     justify-content: center;
     align-items: center;
