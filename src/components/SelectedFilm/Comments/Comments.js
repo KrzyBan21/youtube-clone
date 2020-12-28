@@ -8,6 +8,8 @@ import Spinner from "../../UI/Spinner/Spinner";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/";
 
+// import { useError } from "../../../hooks/useError";
+
 const Comments = ({
   onGetComments,
   videoId,
@@ -16,6 +18,7 @@ const Comments = ({
   isLoading,
   isLoadingMore,
   toogleComments,
+  // error,
 }) => {
   useEffect(() => {
     onGetComments(videoId);
@@ -47,11 +50,11 @@ const Comments = ({
     onGetComments(videoId, nextPageToken);
   };
 
+  // useError(error, "/error");
+
   return (
     <div
-      className={`comments ${
-        toogleComments ? '' : "comments--mobile-switch"
-      }`}
+      className={`comments ${toogleComments ? "" : "comments--mobile-switch"}`}
     >
       {isLoading ? <Spinner /> : commentsToShow}
       <div className="comments__btn">
@@ -73,6 +76,7 @@ const mapStateToProps = (state) => {
     nextPageToken: state.comments.nextPageToken,
     isLoading: state.comments.isLoading,
     isLoadingMore: state.comments.isLoadingMore,
+    // error: state.comments.error,
   };
 };
 

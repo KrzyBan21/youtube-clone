@@ -36,8 +36,6 @@ export const getFilms = (searchText, pageToken = null) => {
 
       dispatch(getFilmsStart(isMoreFilms));
 
-    
-
       const response = await youtube.get("/search", {
         params: {
           q: searchText,

@@ -40,6 +40,10 @@ const FilmList = ({
     if (clientHeight >= scrollHeight && nextPageToken) {
       onGetFilms(text, nextPageToken);
     }
+
+    return () => {
+      window.onscroll = null;
+    };
   }, [onGetFilms, text, nextPageToken, toogleFilms]);
 
   useEffect(() => {

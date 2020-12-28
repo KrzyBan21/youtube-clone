@@ -50,10 +50,8 @@ export const getComments = (videoId, pageToken = null) => {
           isMoreComments
         )
       );
-      // console.log(comments);
     } catch (e) {
       dispatch(getCommentsFail(e.message));
-      // console.log(e.message);
     }
   };
 };
