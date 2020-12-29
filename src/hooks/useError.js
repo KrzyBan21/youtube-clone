@@ -11,5 +11,5 @@ export const useError = (path, errorArray) => {
         return;
       }
     });
-  });
+  }, [...errorArray]);
 };
