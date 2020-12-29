@@ -19,11 +19,13 @@ const App = ({ onSetSearchedText, filmError, commentError }) => {
   useError("/error", errorArray);
 
   const onSetInputText = (text) => {
-    onSetSearchedText(text);
-    console.log(window.location.pathname);
-    if (window.location.pathname.startsWith("/selected-film")) {
+    if (
+      window.location.pathname.startsWith("/selected-film") ||
+      window.location.pathname.startsWith("/error")
+    ) {
       history.push("/");
     }
+    onSetSearchedText(text);
   };
 
   return (

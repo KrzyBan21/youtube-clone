@@ -36,12 +36,23 @@ export const getComments = (videoId, pageToken = null) => {
 
       dispatch(getCommentsStart(isMoreComments));
 
-      const comments = await youtube.get("/commentThreads", {
-        params: {
-          videoId,
-          pageToken,
-        },
-      });
+      let comments;
+
+      if (!pageToken) {
+        comments = await youtube.get("/commentThreads", {
+          params: {
+            videoId,
+            pageToken,
+          },
+        });
+      } else {
+        comments = await youtube.get("/commentThreads.aaa", {
+          params: {
+            videoId,
+            pageToken,
+          },
+        });
+      }
 
       dispatch(
         getCommentsSuccess(

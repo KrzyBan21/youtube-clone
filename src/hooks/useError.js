@@ -1,15 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 export const useError = (path, errorArray) => {
   const history = useHistory();
 
-  useEffect(() => {
+  const workAround = useCallback(() => {
     errorArray.forEach((error) => {
       if (error) {
         history.push(path);
         return;
       }
     });
-  }, [...errorArray]);
+  }, [errorArray, history, path]);
+
+  useEffect(() => {
+    workAround();
+  }, [workAround]);
 };

@@ -56,16 +56,24 @@ const Comments = ({
     <div
       className={`comments ${toogleComments ? "" : "comments--mobile-switch"}`}
     >
-      {isLoading ? <Spinner /> : commentsToShow}
-      <div className="comments__btn">
-        {isLoadingMore ? (
+      {isLoading ? (
+        <div className="comments__btn">
           <Spinner />
-        ) : (
-          <ShowMoreBtn onClick={onLoadMoreComments}>
-            Show more comments
-          </ShowMoreBtn>
-        )}
-      </div>
+        </div>
+      ) : (
+        <React.Fragment>
+          {commentsToShow}
+          <div className="comments__btn">
+            {isLoadingMore ? (
+              <Spinner />
+            ) : (
+              <ShowMoreBtn onClick={onLoadMoreComments}>
+                Show more comments
+              </ShowMoreBtn>
+            )}
+          </div>
+        </React.Fragment>
+      )}
     </div>
   );
 };
