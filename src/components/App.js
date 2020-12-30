@@ -26,6 +26,9 @@ const App = ({ onSetSearchedText, filmError, commentError }) => {
       history.push("/");
     }
     onSetSearchedText(text);
+
+    let el = document.querySelector("input:focus");
+    if (el) el.blur();
   };
 
   return (
