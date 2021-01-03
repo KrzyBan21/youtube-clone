@@ -4,11 +4,11 @@
   grid-area: side;
 
   @media (max-width: $mobile-film-and-comments) {
-    z-index: 101;
+     z-index: 101;
     width: 100%;
+ 
 
     &--mobile-switch {
-      transform: translateX(calc(-100% - 2rem));
       display: none;
     }
   }

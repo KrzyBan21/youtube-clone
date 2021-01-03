@@ -5,12 +5,14 @@
   padding: 1rem 3rem;
 
   @media (max-width: $mobile-film-and-comments) {
-    z-index: 100;
+     z-index: 100;
     width: 100%;
-    top: 5rem;
+    grid-area: side;
+     top: 5rem;
+     overflow-x: scroll;
 
     &--mobile-switch {
-      transform: translateX(calc(-100% - 2rem));
+
       display: none;
     }
   }

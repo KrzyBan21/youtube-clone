@@ -1,25 +1,25 @@
-@import '../../sass/base.scss';
+@import "../../sass/base.scss";
 
 .selected-film {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2.5fr 1.5fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     "video side"
     "comments side";
 
   grid-column-gap: 2rem;
-  position: relative;
+  // position: relative;
 
   @media (max-width: $mobile-film-and-comments) {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas:
       "video"
-      "comments"
-      "side";
+      //"comments"
+      "side"; 
 
-    grid-column-gap: 2rem;
+    // grid-column-gap: 2rem;
   }
 
   &__iframe {
