@@ -13,11 +13,16 @@ const initialState = {
 
 const getFilmsStart = (state, action) => {
   if (action.isMoreFilms) {
-    const objectToUpdate = { isLoadingMore: true, error: null };
+    const objectToUpdate = {
+      isLoadingMore: true,
+      error: null,
+      isLoading: false,
+    };
     return updateObject(state, objectToUpdate);
   } else {
     const objectToUpdate = {
       isLoading: true,
+      isLoadingMore: false,
       error: null,
       nextPageToken: action.pageToken,
     };
